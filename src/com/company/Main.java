@@ -75,7 +75,7 @@ public class Main {
     /**
      * Creates a 2 dim array with 0 values form specific size
      */
-    public static void createArr(int s){
+    private static void createArr(int s){
         for (int i =0; i < s; i++) {
             System.out.print('{');
             for (int j = 0; j < s - 1; j++)
@@ -83,7 +83,7 @@ public class Main {
             System.out.println("0},");
         }
     }
-    public static void createBooleanTrueArr(int m, int n){
+    private static void createBooleanTrueArr(int m, int n){
         for (int i =0; i < m; i++) {
             System.out.print('{');
             for (int j = 0; j < n -1; j++)
@@ -91,7 +91,7 @@ public class Main {
             System.out.println("true},");
         }
     }
-    public static void createBooleanFalseArr(int m, int n){
+    private static void createBooleanFalseArr(int m, int n){
         for (int i =0; i < m; i++) {
             System.out.print('{');
             for (int j = 0; j < n - 1; j++)
@@ -104,7 +104,7 @@ public class Main {
      * prints given array
      * @param a -> array
      */
-    public static void printArr(int [] [] a){
+    private static void printArr(int [] [] a){
             for (int i =0; i < a.length; i++) {
                 System.out.print('{');
                 for (int j = 0; j < a[0].length-1; j++)
@@ -113,7 +113,7 @@ public class Main {
             }
 
         }
-    public static void printBoolArr(boolean [] [] a){
+    private static void printBoolArr(boolean [] [] a){
             for (int i =0; i < a.length; i++) {
                 System.out.print('{');
                 for (int j = 0; j < a[0].length-1; j++)
@@ -123,7 +123,7 @@ public class Main {
 
         }
 // testing ex1
-     public static void testMaximalDrop(){
+    private static void testMaximalDrop(){
 	// write your code here
         int [] a= {5, 21, 3, 22, 12, 7, 27, 6, 4};
         int [] b = {5, 21, 3, 22, 12, 7, 26, 14};
@@ -142,7 +142,7 @@ public class Main {
         System.out.println("g -> " +maximalDrop(g) + " ");
     }
     // testing ex2
-    public static void testIsSync(){
+    private static void testIsSync(){
         //        printArr();
         int [] [] a =
                 {
@@ -222,7 +222,7 @@ public class Main {
      * @param visited -> second metrics which remembers whether or not a cell haa been visited
      * @return the size of a "stain" in the matrix.
      */
-    public static int getSize(boolean[][] mat, int x, int y,boolean[][] visited){
+    private static int getSize(boolean[][] mat, int x, int y,boolean[][] visited){
         if (x > mat.length - 1 || y > mat[0].length - 1 || x < 0 || y < 0)
             return 0;
         if (mat[x][y] && !visited[x][y]){
@@ -246,7 +246,7 @@ public class Main {
      * @param x -> the x value of the cell we are currently filling
      * @param y -> the y value of the cell we are currently filling
      */
-    public static void fillBlanks(boolean[][] mat,int x,int y){
+    private static void fillBlanks(boolean[][] mat,int x,int y){
         if (x < mat.length && y < mat[0].length){
             mat[x][y] = false;
             fillBlanks(mat,x+1,y);
@@ -298,6 +298,8 @@ public class Main {
      * @return true if the numbers are sam
      */
     public static boolean isPermutation (int [] a, int [] b){
+        if (a.length != b.length) //edge case -> the arrays are not the same lenght
+            return false;
         return isPermutation(a,0, b);
     }
 
@@ -308,7 +310,7 @@ public class Main {
      * @param b -> the second array
      * @return true if all the cells in a are in b
      */
-    public static boolean isPermutation (int [] a,int ai, int [] b){
+    private static boolean isPermutation (int [] a,int ai, int [] b){
         if (ai == a.length -1) //check last cell
         {
             if (a.length > 1)
@@ -329,7 +331,7 @@ public class Main {
      * @param bi -> array two index
      * @return true if found cell in b
      */
-    public static boolean isPermutation (int [] a,int ai, int [] b, int bi){
+    private static boolean isPermutation (int [] a,int ai, int [] b, int bi){
         if (bi < b.length)
             return a[ai] == b[bi] || isPermutation(a,ai,b,bi+1);
         return false;
