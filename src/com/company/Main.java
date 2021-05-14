@@ -290,9 +290,24 @@ public class Main {
         System.out.println("mat3,4,0 -> " + size(mat3,4,0) + " needs to be 4");
         System.out.println("mat3,4,4 -> " + size(mat3,4,4) + " needs to be 0");
     }
+
+    /**
+     * A recursive method that deremines is two arrays have the exact same numbers
+     * @param a -> array 1
+     * @param b -> array 2
+     * @return true if the numbers are sam
+     */
     public static boolean isPermutation (int [] a, int [] b){
         return isPermutation(a,0, b);
     }
+
+    /**
+     * helper method that checks on all the cells in the first array
+     * @param a -> the first array
+     * @param ai -> array one index
+     * @param b -> the second array
+     * @return true if all the cells in a are in b
+     */
     public static boolean isPermutation (int [] a,int ai, int [] b){
         if (ai == a.length -1) //check last cell
         {
@@ -305,6 +320,15 @@ public class Main {
         }
         return false; // edge case -> index oob -> null array
     }
+
+    /**
+     * helper method that checks on all the cells in the second array
+     * @param a -> the first array
+     * @param ai -> array one index
+     * @param b -> the second array
+     * @param bi -> array two index
+     * @return true if found cell in b
+     */
     public static boolean isPermutation (int [] a,int ai, int [] b, int bi){
         if (bi < b.length)
             return a[ai] == b[bi] || isPermutation(a,ai,b,bi+1);
