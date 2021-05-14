@@ -33,10 +33,14 @@ public class Main {
                         {true,false,false,false,false},
                         {true,true,true,false,false}
                 };
+        System.out.println("mat 3: ");
+        printBoolArr(mat3);
+        System.out.println();
+
         System.out.println("mat3,0,1 -> " + size(mat3,0,1) + " needs to be 2");
-//        System.out.println("mat3,1,3 -> " + size(mat3,1,3) + " needs to be 5");
-//        System.out.println("mat3,4,0 -> " + size(mat3,4,0) + " needs to be 4");
-//        System.out.println("mat3,4,4 -> " + size(mat3,4,4) + " needs to be 0");
+        System.out.println("mat3,1,3 -> " + size(mat3,1,3) + " needs to be 5");
+        System.out.println("mat3,4,0 -> " + size(mat3,4,0) + " needs to be 4");
+        System.out.println("mat3,4,4 -> " + size(mat3,4,4) + " needs to be 0");
     }
 
     /**
@@ -165,6 +169,70 @@ public class Main {
     }
     // testing ex2
     public static void testIsSync(){
+
+
+    }
+
+    /**
+     * this is a recursive static method that determines the size of a "stain" in the matrix.
+     * stain is sequence of cells with the value of True
+     * @param mat -> boolean matrix
+     * @param x -> x position of the start of the search in the matrix
+     * @param y -> y position of the start of the search in the matrix
+     * @return the size of a "stain" in the matrix.
+     */
+    public static int size (boolean[][] mat, int x, int y) {
+        boolean [][] visited = new boolean[mat.length][mat[0].length];
+        fillBlanks(visited,0,0);
+        System.out.println("visited:");
+        printBoolArr(visited);
+        System.out.println();
+        return getSize(mat,x,y, visited);
+    }
+
+    /**
+     * this is a recursive helper method that checks if a cell has already been visited before
+     * @param mat -> the matrix we are searching on
+     * @param x -> x position of the start of the search in the matrix
+     * @param y -> y position of the start of the search in the matrix
+     * @param visited -> second metrics which remembers whether or not a cell haa been visited
+     * @return the size of a "stain" in the matrix.
+     */
+    public static int getSize(boolean[][] mat, int x, int y,boolean[][] visited){
+        if (x > mat.length - 1 || y > mat[0].length - 1 || x < 0 || y < 0)
+            return 0;
+        if (mat[x][y] && !visited[x][y]){
+            visited[x][y] = true;
+            return 1 + getSize(mat,x+1,y, visited) // one to the right
+                    + getSize(mat,x -1,y, visited) // one to the left
+                    + getSize(mat,x ,y + 1, visited) // one up
+                    + getSize(mat,x,y - 1, visited) // one down
+                    + getSize(mat,x - 1,y + 1, visited) // one to the left and down
+                    + getSize(mat,x - 1,y - 1, visited) // one to the left and up
+                    + getSize(mat,x + 1,y - 1, visited) // one to the right and up
+                    + getSize(mat,x + 1,y + 1, visited); // one to the right and down
+        }
+        return 0;
+    }
+
+    /**
+     * A recursive method that fills a blank matrics with false value
+     * (the request was to make all the methods recursive)
+     * @param mat -> the matrics we are filling
+     * @param x -> the x value of the cell we are currently filling
+     * @param y -> the y value of the cell we are currently filling
+     */
+    public static void fillBlanks(boolean[][] mat,int x,int y){
+        if (x < mat.length && y < mat[0].length){
+            mat[x][y] = false;
+            fillBlanks(mat,x+1,y);
+            fillBlanks(mat,x,y+1);
+        }
+
+    }
+    public static void testSize(){
+        createBooleanTrueArr(5,5);
+        createBooleanFalseArr(5,5);
         //        printArr();
         int [] [] a =
                 {
@@ -216,50 +284,6 @@ public class Main {
         System.out.println("d ->" +isSink(d));
 //        createArr();
 //        System.out.println(a);
-
-    }
-
-    /**
-     *
-     * @param mat
-     * @param x
-     * @param y
-     * @return
-     */
-    public static int size (boolean[][] mat, int x, int y) {
-        boolean [][] visited = new boolean[mat.length][mat[0].length];
-        fillBlanks(mat,0,0);
-        printBoolArr(visited);
-        getSize(mat,x,y, visited);
-        return -1;
-    }
-    public static int getSize(boolean[][] mat, int x, int y,boolean[][] visited){
-        if (x > mat.length - 1 || y > mat[0].length - 1 || x < 0 || y < 0)
-            return 0;
-        if (mat[x][y] && !visited[x][y]){
-            visited[x][y] = true;
-            return 1 + getSize(mat,x+1,y, visited) // one to the right
-                    + getSize(mat,x -1,y, visited) // one to the left
-                    + getSize(mat,x ,y + 1, visited) // one up
-                    + getSize(mat,x,y - 1, visited) // one down
-                    + getSize(mat,x - 1,y + 1, visited) // one to the left and down
-                    + getSize(mat,x - 1,y - 1, visited) // one to the left and up
-                    + getSize(mat,x + 1,y - 1, visited) // one to the right and up
-                    + getSize(mat,x + 1,y + 1, visited); // one to the right and down
-        }
-        return 0;
-    }
-    public static void fillBlanks(boolean[][] mat,int x,int y){
-        if (x < mat.length && y < mat[0].length){
-            mat[x][y] = false;
-            fillBlanks(mat,x+1,y);
-            fillBlanks(mat,x,y+1);
-        }
-
-    }
-    public static void testSize(){
-        createBooleanTrueArr(5,5);
-        createBooleanFalseArr(5,5);
     }
 
 
