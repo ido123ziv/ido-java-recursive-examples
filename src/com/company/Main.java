@@ -9,38 +9,12 @@ package com.company;
 public class Main {
 
     public static void main(String[] args) {
-//        testSize();
-        boolean [] [] mat1 = {
-                    {true,true,true,true,true},
-                    {true,true,true,true,true},
-                    {true,true,true,true,true},
-                    {true,true,true,true,true},
-                    {true,true,true,true,true}
-        };
-        boolean [] [] mat2 =
-                {
-                        {false,false,false,false,false},
-                        {false,false,false,false,false},
-                        {false,false,false,false,false},
-                        {false,false,false,false,false},
-                        {false,false,false,false,false}
-                };
-        boolean [] [] mat3 =
-                {
-                        {false,true,false,false,true},
-                        {true,false,false,true,true},
-                        {false,false,true,true,false},
-                        {true,false,false,false,false},
-                        {true,true,true,false,false}
-                };
-        System.out.println("mat 3: ");
-        printBoolArr(mat3);
-        System.out.println();
-
-        System.out.println("mat3,0,1 -> " + size(mat3,0,1) + " needs to be 2");
-        System.out.println("mat3,1,3 -> " + size(mat3,1,3) + " needs to be 5");
-        System.out.println("mat3,4,0 -> " + size(mat3,4,0) + " needs to be 4");
-        System.out.println("mat3,4,4 -> " + size(mat3,4,4) + " needs to be 0");
+        int [] a = {1,2,3,4};
+        int [] b = {4,2,3,1};
+        int [] b1 = {0,2,3,1};
+        int [] b2 = {5,2,3,1};
+        System.out.println("is permutation a & b: "  + isPermutation(a,b) + " needs to be true");
+        System.out.println("is permutation b1 & b2: "  + isPermutation(b1,b2) + " needs to be false");
     }
 
     /**
@@ -169,7 +143,57 @@ public class Main {
     }
     // testing ex2
     public static void testIsSync(){
-
+        //        printArr();
+        int [] [] a =
+                {
+                        {0,0,0,0,0,0,0,0,0,0},
+                        {1,0,0,0,0,0,0,0,0,0},
+                        {1,0,0,0,0,0,0,0,0,0},
+                        {1,0,0,0,0,0,0,0,0,0},
+                        {1,0,0,0,0,0,0,0,0,0},
+                        {1,0,0,0,0,0,0,0,0,0},
+                        {1,0,0,0,0,0,0,0,0,0},
+                        {1,0,0,0,0,0,0,0,0,0},
+                        {1,0,0,0,0,0,0,0,0,0},
+                        {1,0,0,0,0,0,0,0,0,0}
+                };
+        System.out.println("a ->" + isSink(a));
+        int [] [] e =
+                {
+                        {0,0,0,0,0,1},
+                        {0,0,0,0,0,1},
+                        {0,0,0,0,0,0},
+                        {0,0,0,0,0,1},
+                        {0,0,0,0,0,1},
+                        {0,0,0,0,0,1}
+                };
+        System.out.println("e ->" +isSink(e));
+        int [] [] b =
+                {
+                        {0,0,0,0,0,1},
+                        {0,0,0,0,0,1},
+                        {0,0,0,0,0,1},
+                        {0,0,0,0,0,1},
+                        {0,0,0,0,0,1},
+                        {0,0,0,0,0,0}
+                };
+        System.out.println("b ->" +isSink(b));
+        int [] [] c = {{0,1,0,1,1,0},
+                {1,0,1,1,0,0},
+                {0,0,0,1,0,1},
+                {0,0,0,0,0,0},
+                {1,0,1,1,0,0},
+                {0,1,0,1,1,1}};
+        int [] [] d = {{0,1,0,0,0,1},
+                {1,0,0,1,1,1},
+                {0,0,0,0,0,0},
+                {1,1,1,1,1,1},
+                {0,1,0,1,0,1},
+                {1,0,0,0,1,0}};
+        System.out.println("c ->" +isSink(c));
+        System.out.println("d ->" +isSink(d));
+//        createArr();
+//        System.out.println(a);
 
     }
 
@@ -233,58 +257,60 @@ public class Main {
     public static void testSize(){
         createBooleanTrueArr(5,5);
         createBooleanFalseArr(5,5);
-        //        printArr();
-        int [] [] a =
+        //        testSize();
+        boolean [] [] mat1 = {
+                {true,true,true,true,true},
+                {true,true,true,true,true},
+                {true,true,true,true,true},
+                {true,true,true,true,true},
+                {true,true,true,true,true}
+        };
+        boolean [] [] mat2 =
                 {
-                        {0,0,0,0,0,0,0,0,0,0},
-                        {1,0,0,0,0,0,0,0,0,0},
-                        {1,0,0,0,0,0,0,0,0,0},
-                        {1,0,0,0,0,0,0,0,0,0},
-                        {1,0,0,0,0,0,0,0,0,0},
-                        {1,0,0,0,0,0,0,0,0,0},
-                        {1,0,0,0,0,0,0,0,0,0},
-                        {1,0,0,0,0,0,0,0,0,0},
-                        {1,0,0,0,0,0,0,0,0,0},
-                        {1,0,0,0,0,0,0,0,0,0}
+                        {false,false,false,false,false},
+                        {false,false,false,false,false},
+                        {false,false,false,false,false},
+                        {false,false,false,false,false},
+                        {false,false,false,false,false}
                 };
-        System.out.println("a ->" + isSink(a));
-        int [] [] e =
+        boolean [] [] mat3 =
                 {
-                        {0,0,0,0,0,1},
-                        {0,0,0,0,0,1},
-                        {0,0,0,0,0,0},
-                        {0,0,0,0,0,1},
-                        {0,0,0,0,0,1},
-                        {0,0,0,0,0,1}
+                        {false,true,false,false,true},
+                        {true,false,false,true,true},
+                        {false,false,true,true,false},
+                        {true,false,false,false,false},
+                        {true,true,true,false,false}
                 };
-        System.out.println("e ->" +isSink(e));
-        int [] [] b =
-                {
-                        {0,0,0,0,0,1},
-                        {0,0,0,0,0,1},
-                        {0,0,0,0,0,1},
-                        {0,0,0,0,0,1},
-                        {0,0,0,0,0,1},
-                        {0,0,0,0,0,0}
-                };
-        System.out.println("b ->" +isSink(b));
-        int [] [] c = {{0,1,0,1,1,0},
-                {1,0,1,1,0,0},
-                {0,0,0,1,0,1},
-                {0,0,0,0,0,0},
-                {1,0,1,1,0,0},
-                {0,1,0,1,1,1}};
-        int [] [] d = {{0,1,0,0,0,1},
-                {1,0,0,1,1,1},
-                {0,0,0,0,0,0},
-                {1,1,1,1,1,1},
-                {0,1,0,1,0,1},
-                {1,0,0,0,1,0}};
-        System.out.println("c ->" +isSink(c));
-        System.out.println("d ->" +isSink(d));
-//        createArr();
-//        System.out.println(a);
+        System.out.println("mat 3: ");
+        printBoolArr(mat3);
+        System.out.println();
+
+        System.out.println("mat3,0,1 -> " + size(mat3,0,1) + " needs to be 2");
+        System.out.println("mat3,1,3 -> " + size(mat3,1,3) + " needs to be 5");
+        System.out.println("mat3,4,0 -> " + size(mat3,4,0) + " needs to be 4");
+        System.out.println("mat3,4,4 -> " + size(mat3,4,4) + " needs to be 0");
     }
+    public static boolean isPermutation (int [] a, int [] b){
+        return isPermutation(a,0, b);
+    }
+    public static boolean isPermutation (int [] a,int ai, int [] b){
+        if (ai == a.length -1) //check last cell
+        {
+            if (a.length > 1)
+                return isPermutation(a,ai,b,0);
+            return a[ai] == b[ai]; // edge case -> both array are one cell length
+        }
+        if (ai < a.length){
+            return isPermutation(a,ai,b,0) && isPermutation(a,ai+1,b);
+        }
+        return false; // edge case -> index oob -> null array
+    }
+    public static boolean isPermutation (int [] a,int ai, int [] b, int bi){
+        if (bi < b.length)
+            return a[ai] == b[bi] || isPermutation(a,ai,b,bi+1);
+        return false;
+    }
+
 
 
 }
